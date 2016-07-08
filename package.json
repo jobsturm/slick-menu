@@ -1,0 +1,31 @@
+{
+    "name": "Personal-Nerd",
+    "version": "1.0.0",
+    "dependencies": {
+        "gulp": "*",
+        "gulp-ruby-sass": "*",
+        "browser-sync": "*",
+        "gulp-util": "*",
+        "gulp-rename": "*",
+        "map-stream": "*",
+        "gulp-livereload": "*",
+        "gulp-concat": "*",
+        "gulp-uglify": "*",
+        "gulp-watch": "*",
+        "gulp-babel": "*",
+        "gulp-notify": "*",
+        "gulp-minify-css": "*",
+        "gulp-inline": "*",
+        "gulp-inline-source": "*",
+        "gulp-insert": "*",
+        "gulp-size": "*",
+        "gulp-file-include": "*",
+        "gulp-prettify": "*",
+        "gulp-imagemin": "*",
+        "gulp-gm": "*",
+        "gulp-sass": "*",
+        "gulp-image-optimization": "*",
+        "babel-preset-es2015": "*",
+        "gulp-autoprefixer": "*"
+    }
+}

@@ -1,0 +1,27 @@
+// disable defaults
+h1, h2, h3, h4, h5, h6 {
+    padding: 0px;
+    margin: 0px;
+}
+p {
+    margin: 0px;
+}
+a {
+    font-weight: inherit;
+    font-style: inherit; 
+    font-family: inherit;
+    font-size: inherit;
+    text-decoration: none;
+    color: inherit;
+}
+
+@import 'https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700|Roboto:300,400,500,700';
+
+.title {
+    font-family: 'Roboto Slab', serif;    
+}
+
+.paragraph {
+    font-family: 'Roboto', sans-serif;
+}
+

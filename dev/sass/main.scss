@@ -1,0 +1,43 @@
+// external
+@import "includes/_slick.scss";
+@import "includes/_slick-theme.scss";
+@import "includes/fontawesome/font-awesome.scss";
+@import "includes/skeleton/skeleton.scss";
+@import "includes/skeleton/normalize.scss";
+// default imports
+// There are two mixin files, because I uesed to love SASS, but now I only work with SCSS.
+// However I got really accustomed to using the mixins I made in the .sass file in my workflow.
+// The SCSS has two mixins, a gradient and a mediaquery one. It's really hard to convert either,
+// therefore I use both files, which doesn't harm performance. So everything is fine, nothing to
+// see here folks, move along!
+@import "includes/_mixins.sass";
+@import "includes/_mixins.scss";
+@import "includes/_variables.scss";
+@import "includes/_fonts.scss";
+@import "includes/_animations.scss";
+//@import "includes/_icons.scss";
+// custom imports
+@import "_grid.scss";
+@import "_buttons.scss";
+@import "_menu.scss";
+@import "_blocks.scss";
+@import "_inputs.scss";
+@import "_api.scss";
+@import "_modal.scss";
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0px;
+    padding-top: $menu_height;
+    background-color: $darkest;
+}
+// browser sync
+#__bs_notify__ {
+    top: auto !important;
+    bottom: 0px !important;
+    right: 0px !important;
+    border-radius: 15px !important;
+    height: 60px !important;
+    opacity: 0.3;
+}

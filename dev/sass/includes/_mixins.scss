@@ -1,0 +1,150 @@
+/// Convert angle
+/// @param {Number} $value - Value to convert
+/// @param {String} $unit - Unit to convert to
+/// @return {Number} Converted angle
+@function convert-angle($value, $unit) {
+  $convertable-units: deg grad turn rad;
+  $conversion-factors: 1 (10grad/9deg) (1turn/360deg) (3.1415926rad/180deg);
+  @if index($convertable-units, unit($value)) and index($convertable-units, $unit) {
+    @return $value
+             / nth($conversion-factors, index($convertable-units, unit($value)))
+             * nth($conversion-factors, index($convertable-units, $unit));
+  }
+  
+  @warn "Cannot convert `#{unit($value)}` to `#{$unit}`.";
+}
+
+/// Test if `$value` is an angle
+/// @param {*} $value - Value to test
+/// @return {Bool}
+@function is-direction($value) {
+  $is-direction: index((to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
+  $is-angle: type-of($value) == 'number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+  
+  @return $is-direction or $is-angle;
+}
+
+// ----
+// Sass (v3.4.7)
+// Compass (v1.0.1)
+// ----
+
+/// Convert angle
+/// @param {Number} $value - Value to convert
+/// @param {String} $unit - Unit to convert to
+/// @return {Number} Converted angle
+@function convert-angle($value, $unit) {
+  $convertable-units: deg grad turn rad;
+  $conversion-factors: 1 (10grad/9deg) (1turn/360deg) (3.1415926rad/180deg);
+  @if index($convertable-units, unit($value)) and index($convertable-units, $unit) {
+    @return $value
+             / nth($conversion-factors, index($convertable-units, unit($value)))
+             * nth($conversion-factors, index($convertable-units, $unit));
+  }
+  
+  @warn "Cannot convert `#{unit($value)}` to `#{$unit}`.";
+}
+
+/// Test if `$value` is an angle
+/// @param {*} $value - Value to test
+/// @return {Bool}
+@function is-direction($value) {
+  $is-direction: index((to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
+  $is-angle: type-of($value) == 'number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+  
+  @return $is-direction or $is-angle;
+}
+
+/// Convert a direction to legacy syntax
+/// @param {Keyword | Angle} $value - Value to convert
+/// @require {function} is-direction
+/// @require {function} convert-angle
+@function legacy-direction($value) {
+  @if is-direction($value) == false {
+    @warn "Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be an angle or a direction";
+  }
+  
+  $conversion-map: ( 
+  );
+    
+  @if map-has-key($conversion-map, $value) {
+    @return map-get($conversion-map, $value);
+  }
+  
+  @return 90deg - convert-angle($value, 'deg');
+}
+
+/// Mixin printing a linear-gradient 
+/// as well as a plain color fallback 
+/// and the `-webkit-` prefixed declaration
+/// @access public
+/// @param {String | List | Angle} $direction - Linear gradient direction
+/// @param {Arglist} $color-stops - List of color-stops composing the gradient
+@mixin linear-gradient($direction, $color-stops...) {
+  @if is-direction($direction) == false {
+    $color-stops: ($direction, $color-stops);
+    $direction: 180deg;
+  }
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background-image: -webkit-linear-gradient($direction, $color-stops); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient($direction, $color-stops); /* FF3.6 */
+  background-image:     -ms-linear-gradient($direction, $color-stops); /* IE10 */
+  background-image:      -o-linear-gradient($direction, $color-stops); /* Opera 11.10+ */
+  background-image:         linear-gradient($direction, $color-stops);
+}
+
+// MEDIAQUERIES <3 <3
+
+// HOW TO USE THIS:
+// .some-class{
+//   margin-left: 15px;
+//   @include mq(minimum) {
+//     <some css value>
+//   }
+// }
+
+@mixin mq($point) {
+    @media (max-width: $point) { @content; }
+}
+@mixin mq_phone {
+    @media (max-width: 768px) { @content; }
+}
+@mixin mq_tablet {
+    @media (max-width: 1023px) and (min-width: 768px) { @content; }
+}
+@mixin mq_ls {
+    @media (max-width: 1279px) and (min-width: 1023px) { @content; }
+}
+@mixin mq_desk {
+    // IT'S OVER 9000!
+    @media (max-width: 9001px) and (min-width: 1279px) { @content; }
+}
+@mixin mq_no-mobile {
+    @media (max-width: 9001px) and (min-width: 768px) { @content; }
+}
+%center {
+    position: relative;
+    @include translate(50%, 50%);
+    margin-left: -50%;
+    margin-top: -50%;
+}
+%center-horizontal {
+    position: relative;
+    @include translate(50%, 0%);
+    margin-left: -50%;
+}
+%center-vertical {
+    position: relative;
+    @include translate(0%, 50%);
+    margin-top: -50%;
+}
+%center-vertical-force {
+    position: relative;
+    top: 50%;
+    @include translate(0px, -50%);
+}
+%center-horizontal-force {
+    position: relative;
+    left: 50%;
+    @include translate(-50%, 0px);
+}

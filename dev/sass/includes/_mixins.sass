@@ -1,0 +1,98 @@
+@mixin keyframes($animation-name) 
+    @-webkit-keyframes $animation-name 
+        @content;
+    
+    @-moz-keyframes $animation-name 
+        @content;
+      
+    @-ms-keyframes $animation-name 
+        @content;
+    
+    @-o-keyframes $animation-name 
+        @content;
+      
+    @keyframes $animation-name 
+        @content;
+    
+@mixin animation($str) 
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};      
+
+@mixin linear-gradient($fromColor, $toColor)
+    background-color: $toColor /* Fallback Color */
+    background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)) /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient(top, $fromColor, $toColor) /* Chrome 10+, Saf5.1+, iOS 5+ */
+    background-image:    -moz-linear-gradient(top, $fromColor, $toColor) /* FF3.6 */
+    background-image:     -ms-linear-gradient(top, $fromColor, $toColor) /* IE10 */
+    background-image:      -o-linear-gradient(top, $fromColor, $toColor) /* Opera 11.10+ */
+    background-image:         linear-gradient(top, $fromColor, $toColor)
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}')
+
+@mixin transition($transition-property, $transition-time, $method)
+    -webkit-transition: $transition-property $transition-time $method
+    -moz-transition: $transition-property $transition-time $method
+    -ms-transition: $transition-property $transition-time $method
+    -o-transition: $transition-property $transition-time $method
+    transition: $transition-property $transition-time $method
+
+@mixin translate($x,$y)
+    -ms-transform: translate($x,$y)
+    -webkit-transform: translate($x,$y)
+    transform: translate($x,$y)
+
+@mixin translate_important($x,$y)
+    -ms-transform: translate($x,$y) !important;
+    -webkit-transform: translate($x,$y) !important;
+    transform: translate($x,$y) !important;
+
+@mixin rotate($deg)
+    -ms-transform: rotate($deg)
+    -webkit-transform: rotate($deg)
+    transform: rotate($deg)
+
+@mixin rotate_important($deg)
+    -ms-transform: rotate($deg) !important;
+    -webkit-transform: rotate($deg) !important;
+    transform: rotate($deg) !important;
+
+@mixin scale($scaleW,$scaleH)
+    -ms-transform: scale($scaleW,$scaleH)
+    -webkit-transform: scale($scaleW,$scaleH)
+    transform: scale($scaleW,$scaleH)
+
+@mixin scale_important($scaleW,$scaleH)
+    -ms-transform: scale($scaleW,$scaleH) !important;
+    -webkit-transform: scale($scaleW,$scaleH) !important;
+    transform: scale($scaleW,$scaleH) !important;
+
+@mixin transform($x,$y,$deg,$scaleW,$scaleH)
+    -ms-transform: scale($scaleW,$scaleH) rotate($deg) translate($x,$y)
+    -webkit-transform: scale($scaleW,$scaleH) rotate($deg) translate($x,$y)
+    transform: scale($scaleW,$scaleH) rotate($deg) translate($x,$y)
+
+@mixin translate-scale($x,$y,$scaleW,$scaleH)
+    -ms-transform: scale($scaleW,$scaleH)  translate($x,$y)
+    -webkit-transform: scale($scaleW,$scaleH) translate($x,$y)
+    transform: scale($scaleW,$scaleH) translate($x,$y)
+
+@mixin transform_origin($x,$y)
+    -ms-transform-origin: $x $y
+    -webkit-transform-origin: $x $y
+    transform-origin: $x $y
+
+@mixin transition_delay($time)
+    -webkit-transition-delay: $time
+    transition-delay: $time
+    
+@mixin input-placeholder($color)
+    &::-webkit-input-placeholder
+        color: $color
+    &:-moz-placeholder
+        color: $color
+    &::-moz-placeholder
+        color: $color
+    &:-ms-input-placeholder
+        color: $color
